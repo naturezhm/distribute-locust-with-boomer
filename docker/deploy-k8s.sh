@@ -23,18 +23,20 @@ script_dir="$( cd "$(dirname "$0")" ; pwd -P )"
 curr_dir=$(pwd -P)
 project_dir="$( cd ${project_dir} ; pwd -P )"
 
-echo "Deploying docker image ${DOCKER_IMAGE} to k8s"
+echo "Deploying docker image ${DOCKER_IMAGE} to k8s \n"
 
 manifest=${project_dir}/k8s.yml
 manifest_name=$(echo "${manifest}" | sed "s/.*\///")
-echo "${manifest_name}"
+echo "${manifest_name} \n"
 
 # replace environment variables
-envsubst < ${manifest} > ${manifest_name}-derived.yaml
-echo "Applying manifest definition"
-cat ${manifest_name}-derived.yaml
+envsubst < ${manifest} > ${manifest_name}-gen.yaml
+echo "Applying manifest definition \n"
+cat ${manifest_name}-gen.yaml
 
 # apply  the config
-echo "Using kubeconfig $(kubectl config view -o template --template='{{ index . "current-context" }}')"
-kubectl ${command} -f ${manifest_name}-derived.yaml -n alt
-rm -f *-derived.yaml
+echo "Using kubeconfig $(kubectl config view -o template --template='{{ index . "current-context" }}') \n"
+kubectl ${command} -f ${manifest_name}-gen.yaml -n boomer
+rm -f *-gen.yaml
+
+echo "\n Finish."

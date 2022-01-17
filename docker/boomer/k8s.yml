@@ -22,5 +22,12 @@ spec:
         env:
         - name: TRACKER_URL
           value: ${TRACKER_URL}
+        - name: TASK
+          value: tracker-click,tracker-conv
+        - name: MASTER_HOST
+          value: monkey-locust-master-svc
+        - name: MASTER_PORT
+          value: 5557
+
       imagePullSecrets:
-      - name: regcred
+        - name: docker-password

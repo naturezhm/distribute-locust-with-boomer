@@ -11,6 +11,7 @@ IMAGE_NAME=load-test
 # registry-1.docker.io
 IMAGE_URL=docker.io
 IMAGE_PATH=$(IMAGE_URL)/bradyzm
+K8S_APPLY_PATH=bradyzm
 
 
 .PHONY: check-app
@@ -45,10 +46,10 @@ pushTag: check-app ## push指定tag
 # 	$(shell HOST=$(HOST) docker-compose -f $(app)/docker-compose.yml down)
 
 apply: check-app  ## kubectl apply 指定应用到指定集群
-	@echo "$(shell DOCKER_IMAGE=$(IMAGE_PATH)/$(IMAGE_NAME)-$(app):$(tag) ./deploy-k8s.sh $(app) apply)"
+	@echo "$(shell DOCKER_IMAGE=$(K8S_APPLY_PATH)/$(IMAGE_NAME)-$(app):$(tag) ./deploy-k8s.sh $(app) apply)"
 
 delete: check-app ## kubectl delete 同上，卸载
-	@echo "$(shell DOCKER_IMAGE=$(IMAGE_PATH)/$(IMAGE_NAME)-$(app):$(tag) ./deploy-k8s.sh $(app) delete)"
+	@echo "$(shell DOCKER_IMAGE=$(K8S_APPLY_PATH)/$(IMAGE_NAME)-$(app):$(tag) ./deploy-k8s.sh $(app) delete)"
 
 buildApply: check-app build push apply ## 编译-打包镜像-部署一键 (latest)
 

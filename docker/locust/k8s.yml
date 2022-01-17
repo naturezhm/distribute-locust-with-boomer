@@ -53,6 +53,30 @@ spec:
         - name: OUT_FILE
           value: "result"
       imagePullSecrets:
-      - name: regcred
+        - name: docker-password
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/service-weight: ''
+  name: monkey-boomer-svc
+  namespace: boomer
+spec:
+  rules:
+    - host: boomer.dev.supermonkey.cc
+      http:
+        paths:
+          - backend:
+              service:
+                name: monkey-locust-master-svc
+                port:
+                  number: 8089
+            path: /
+            pathType: ImplementationSpecific
+  tls:
+    - hosts:
+        - boomer.dev.supermonkey.cc
+      secretName: internal-supermonkey-cc-cert
 
       
