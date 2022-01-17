@@ -1,10 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  annotations: 
+    deployTime: ${deployTime}
   name: monkey-locust-slave
   namespace: boomer
   labels:
     app: monkey-locust-slave
+    deployTime: ${deployTime}
 spec:
   replicas: 1
   selector:
@@ -27,7 +30,7 @@ spec:
         - name: MASTER_HOST
           value: monkey-locust-master-svc
         - name: MASTER_PORT
-          value: 5557
+          value: '5557'
 
       imagePullSecrets:
         - name: docker-password

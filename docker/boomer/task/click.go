@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/myzhan/boomer"
+	"github.com/naturezhm/boomer"
 	"github.com/naturezhm/distribute-locust-with-boomer/docker/boomer/data"
 	"github.com/naturezhm/distribute-locust-with-boomer/docker/boomer/util"
 	"github.com/valyala/fasthttp"

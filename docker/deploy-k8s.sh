@@ -18,6 +18,7 @@ checkvar "DOCKER_IMAGE"
 
 project_dir=$1
 command=$2
+export deployTime=$(date +%s)
 
 script_dir="$( cd "$(dirname "$0")" ; pwd -P )"
 curr_dir=$(pwd -P)

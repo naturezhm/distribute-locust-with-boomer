@@ -5,7 +5,7 @@ import (
 	"log"
 	"strings"
 
-	"github.com/myzhan/boomer"
+	"github.com/naturezhm/boomer"
 	"github.com/naturezhm/distribute-locust-with-boomer/docker/boomer/task"
 )
 

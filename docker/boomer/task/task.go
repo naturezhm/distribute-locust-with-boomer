@@ -1,7 +1,7 @@
 package task
 
 import (
-	"github.com/myzhan/boomer"
+	"github.com/naturezhm/boomer"
 )
 
 /**

@@ -4,7 +4,7 @@
 # author naturezhm
 # version 1.0
 
-FROM golang:1.14.1
+FROM golang:1.17.6
 
 LABEL maintainer="naturezhm@gmail.com"
 
@@ -17,7 +17,7 @@ WORKDIR /app/src/github.com/naturezhm/distribute-locust-with-boomer/docker/boome
 COPY . /app/src/github.com/naturezhm/distribute-locust-with-boomer/docker/boomer
 
 RUN chmod 755 ./start.sh
-RUN go build ./...
+RUN go mod tidy && go build ./...
 RUN go build -o slave . 
 RUN chmod 755 ./slave
 

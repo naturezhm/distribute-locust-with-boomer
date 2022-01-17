@@ -26,9 +26,12 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  annotations: 
+    deployTime: ${deployTime}
   name: monkey-locust-master
   labels:
     app: monkey-locust-master
+    deployTime: ${deployTime}
 spec:
   replicas: 1
   selector:

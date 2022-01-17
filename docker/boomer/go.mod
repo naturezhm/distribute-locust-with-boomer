@@ -1,19 +1,18 @@
 module github.com/naturezhm/distribute-locust-with-boomer/docker/boomer
 
-go 1.14
+go 1.17
 
 require (
-	github.com/asaskevich/EventBus v0.0.0-20200907212545-49d423059eef // indirect
-	github.com/google/uuid v1.3.0 // indirect
-	github.com/myzhan/boomer v1.6.0
-	github.com/olekukonko/tablewriter v0.0.5 // indirect
-	github.com/shirou/gopsutil v3.21.11+incompatible // indirect
-	github.com/tklauser/go-sysconf v0.3.9 // indirect
-	github.com/ugorji/go v1.2.6 // indirect
+	github.com/naturezhm/boomer v1.7.1
 	github.com/valyala/fasthttp v1.32.0
-	github.com/yusufpapurcu/wmi v1.2.2 // indirect
-	github.com/zeromq/goczmq v4.1.0+incompatible // indirect
-	github.com/zeromq/gomq v0.0.0-20201031135124-cef4e507bb8e // indirect
-	github.com/zeromq/gomq/zmtp v0.0.0-20201031135124-cef4e507bb8e // indirect
-	golang.org/x/sys v0.0.0-20220114195835-da31bd327af9 // indirect
+)
+
+require (
+	github.com/andybalholm/brotli v1.0.4 // indirect
+	github.com/davecgh/go-spew v1.1.1 // indirect
+	github.com/klauspost/compress v1.14.1 // indirect
+	github.com/kr/pretty v0.3.0 // indirect
+	github.com/rogpeppe/go-internal v1.8.1 // indirect
+	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
+	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
 )
