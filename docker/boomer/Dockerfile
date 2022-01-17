@@ -4,19 +4,21 @@
 # author naturezhm
 # version 1.0
 
-# FROM docker.io/bradyzm/py-base:1.0
-FROM  docker.io/bradyzm/py-base:1.0
+FROM golang:1.14.1
+
 LABEL maintainer="naturezhm@gmail.com"
 
 
-ARG APP_VERSION=1.0
+RUN apt-get install git
+ENV GOPATH /app
+ENV GO111MODULE on
 
-ENV APP_VERSION=${APP_VERSION}
+WORKDIR /app/src/github.com/naturezhm/distribute-locust-with-boomer/docker/boomer
+COPY . /app/src/github.com/naturezhm/distribute-locust-with-boomer/docker/boomer
 
-# WORKDIR /app
+RUN chmod 755 ./start.sh
+RUN go build ./...
+RUN go build -o slave . 
+RUN chmod 755 ./slave
 
-# RUN pip3 install locust
-
-# EXPOSE 5557 8089
-
-ENTRYPOINT [ "tail", "-f" ]
+ENTRYPOINT ["./start.sh"]

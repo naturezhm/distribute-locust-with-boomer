@@ -9,7 +9,7 @@ isLatest=$1
 
 IMAGE_VERSION=1.0
 APP_VERSION=1.0
-IMAGE_NAME=boomer-slave
+IMAGE_NAME=locust-master
 # docker repository url
 # registry-1.docker.io
 IMAGE_URL=docker.io

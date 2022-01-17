@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: monkey-locust-slave
+  namespace: boomer
+  labels:
+    app: monkey-locust-slave
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: monkey-locust-slave
+  template:
+    metadata:
+      labels:
+        app: monkey-locust-slave
+    spec:
+      containers:
+      - name: monkey-locust-slave
+        image: ${DOCKER_IMAGE}
+        imagePullPolicy: Always  
+        env:
+        - name: TRACKER_URL
+          value: ${TRACKER_URL}
+      imagePullSecrets:
+      - name: regcred
