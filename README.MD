@@ -4,29 +4,42 @@
 
 ## Require
 
+- k8s 运行环境 （本机已经配置好对应的kubecofig文件）
+- 一个能开发go的IDE 推荐 vscode goland
+- git
+- docker
 
 ### Run on K8S
 ```bash
-apply                          kubectl apply 指定应用到指定集群
-delete                         kubectl delete 同上，卸载
-buildApply                     编译-打包镜像-部署一键 (latest) 或者指定tag
+make apply                          kubectl apply 指定应用到指定集群
+make delete                         kubectl delete 同上，卸载
+make buildApply                     编译-打包镜像-部署一键 (latest) 或者指定tag
 
-eg: 
-make apply app=boomer tag:v1
+
 ```
 
 ## Install
 ```bash
-build                          编译docker镜像 会自动编译latest 和 指定tag
-push                           push指定latest
-pushTag                        push指定tag
+make build                          编译docker镜像 会自动编译latest 和 指定tag
+make push                           push指定latest
+make pushTag                        push指定tag
 ```
+
+可以通过 `make help` 查看更多指引
 
 ## Get Start
 
 ```bash
 
-make help  查看更多指引
+
+git clone ssh://git@gitlab.internal.supermonkey.com.cn:10022/zhangming/distribute-locust-with-boomer.git
+cd distribute-locust-with-boomer/docker
+// 本地编译镜像
+make build app=boomer tag:v1
+// push镜像
+make pushTag app=boomer tag:v1
+// 应用镜像到集群 (确保已经安装好k8s配置文件)
+make apply app=boomer tag:v1
 
 ```
 
