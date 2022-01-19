@@ -24,7 +24,7 @@ check-app:
 ifeq (,$(filter $(app),boomer locust))
 	$(error USAGE: make [command] app=[boomer|locust])
 else
-	@echo "app:${app}"	
+	@echo "app:${app}  tag:${tag}"
 endif 
 
 help: ## 帮助.
@@ -51,5 +51,5 @@ apply: check-app  ## kubectl apply 指定应用到指定集群
 delete: check-app ## kubectl delete 同上，卸载
 	@echo "$(shell DOCKER_IMAGE=$(K8S_APPLY_PATH)/$(IMAGE_NAME)-$(app):$(tag) ./deploy-k8s.sh $(app) delete)"
 
-buildApply: check-app build push apply ## 编译-打包镜像-部署一键 (latest)
+buildApply: check-app build pushTag apply ## 编译-打包镜像-部署一键 (latest)
 

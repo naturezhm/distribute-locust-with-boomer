@@ -27,11 +27,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations: 
-    deployTime: ${deployTime}
+    deployTime: '${deployTime}'
   name: monkey-locust-master
   labels:
     app: monkey-locust-master
-    deployTime: ${deployTime}
+    deployTime: '${deployTime}'
 spec:
   replicas: 1
   selector:
@@ -41,11 +41,14 @@ spec:
     metadata:
       labels:
         app: monkey-locust-master
+        deployTime: '${deployTime}'
     spec:
       containers:
       - name: monkey-locust-master
         image: ${DOCKER_IMAGE}
-        imagePullPolicy: Always  
+        imagePullPolicy: Always
+        tty: true
+        stdin: true
         ports:
         - containerPort: 5557
         - containerPort: 5558

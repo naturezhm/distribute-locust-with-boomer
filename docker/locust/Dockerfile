@@ -25,7 +25,9 @@ FROM python:3.9
 
 #install locust
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential libncursesw5-dev libreadline-dev libssl-dev libgdbm-dev libc6-dev libsqlite3-dev libxml2-dev libxslt-dev python python-dev python-setuptools && apt-get clean
-RUN pip install locust pyzmq
+#RUN pip install locust pyzmq
+RUN pip install locust==1.6.0
+RUN pip install pyzmq
 
 COPY start.sh /start.sh
 COPY ./locustfile.py /locustfile.py

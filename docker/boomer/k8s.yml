@@ -1,13 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations: 
-    deployTime: ${deployTime}
+  annotations:
+    deployTime: '${deployTime}'
   name: monkey-locust-slave
   namespace: boomer
   labels:
     app: monkey-locust-slave
-    deployTime: ${deployTime}
+    deployTime: '${deployTime}'
 spec:
   replicas: 1
   selector:
@@ -17,20 +17,22 @@ spec:
     metadata:
       labels:
         app: monkey-locust-slave
+        deployTime: '${deployTime}'
     spec:
       containers:
-      - name: monkey-locust-slave
-        image: ${DOCKER_IMAGE}
-        imagePullPolicy: Always  
-        env:
-        - name: TRACKER_URL
-          value: ${TRACKER_URL}
-        - name: TASK
-          value: tracker-click,tracker-conv
-        - name: MASTER_HOST
-          value: monkey-locust-master-svc
-        - name: MASTER_PORT
-          value: '5557'
+        - name: monkey-locust-slave
+          image: ${DOCKER_IMAGE}
+          imagePullPolicy: Always
+          env:
+            - name: TRACKER_URL
+              value: "https://img.supermonkey.com.cn/user/default.png/wm.jpg"
+            - name: TASK
+              # 启用任务 艰 task.go
+              value: fasthttp-task
+            - name: MASTER_HOST
+              value: monkey-locust-master-svc
+            - name: MASTER_PORT
+              value: '5557'
 
       imagePullSecrets:
         - name: docker-password

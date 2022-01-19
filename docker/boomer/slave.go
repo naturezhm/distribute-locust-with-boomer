@@ -9,15 +9,15 @@ import (
 	"github.com/naturezhm/distribute-locust-with-boomer/docker/boomer/task"
 )
 
-// 应用入口
+// 启动入口
 func main() {
-	var job string
+	var taskParam string
 
-	flag.StringVar(&job, "task", "", "Load Test Task ID:-{tracker-click}")
+	flag.StringVar(&taskParam, "task", "", "Load Test Task Need param [task]")
 	flag.Parse()
-	log.Printf(`HTTP benchmark is running with these args:job: %s`, job)
+	log.Printf(`HTTP benchmark is running with these args:taskParam: %s`, taskParam)
 
-	jobs := strings.Split(job, ",")
+	jobs := strings.Split(taskParam, ",")
 	tasks := make([]*boomer.Task, len(jobs))
 	for i, jobName := range jobs {
 		jobName = strings.TrimSpace(jobName)
@@ -27,4 +27,5 @@ func main() {
 	}
 	boomer.Run(tasks...)
 
+	log.Println(`Run Finish : %s`, taskParam)
 }

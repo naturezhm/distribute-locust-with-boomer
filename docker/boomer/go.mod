@@ -3,7 +3,7 @@ module github.com/naturezhm/distribute-locust-with-boomer/docker/boomer
 go 1.17
 
 require (
-	github.com/naturezhm/boomer v1.7.1
+	github.com/naturezhm/boomer v1.6.0
 	github.com/valyala/fasthttp v1.32.0
 )
 

@@ -2,6 +2,8 @@ package task
 
 import (
 	"github.com/naturezhm/boomer"
+	"github.com/naturezhm/distribute-locust-with-boomer/docker/boomer/task/impl/fasthttp"
+	"github.com/naturezhm/distribute-locust-with-boomer/docker/boomer/task/impl/http"
 )
 
 /**
@@ -16,38 +18,51 @@ type LocustTask struct {
 	Task  *boomer.Task
 	Data  interface{}
 	Build func()
-	ctx   map[string]interface{}
+	Ctx   map[string]interface{}
 }
 
-var TrackerClickTask *LocustTask
-var TrackerConvTask *LocustTask
+//var TrackerClickTask *LocustTask
+
+var FastHttpTask *LocustTask
+var HttpTask *LocustTask
 var Tasks map[string]*LocustTask
 
 func init() {
-	TrackerClickTask = &LocustTask{
+	//TrackerClickTask = &LocustTask{
+	//	Task: &boomer.Task{
+	//		Name:   "tracker-click",
+	//		Weight: 1000,
+	//		Fn:     makeClick,
+	//	},
+	//	Data:  []interface{}{},
+	//	Build: buildTrackerClickTask,
+	//	ctx:   map[string]interface{}{},
+	//}
+
+	FastHttpTask = &LocustTask{
 		Task: &boomer.Task{
-			Name:   "tracker-click",
+			Name:   fasthttp.TaskName,
 			Weight: 1000,
-			Fn:     makeClick,
+			Fn:     fasthttp.StartFastHttpTask,
 		},
 		Data:  []interface{}{},
-		Build: buildTrackerClickTask,
-		ctx:   map[string]interface{}{},
+		Build: fasthttp.BuildFastHttpTask,
+		Ctx:   map[string]interface{}{},
 	}
 
-	TrackerConvTask = &LocustTask{
+	HttpTask = &LocustTask{
 		Task: &boomer.Task{
-			Name:   "tracker-conv",
-			Weight: 100,
-			Fn:     makeConv,
+			Name:   fasthttp.TaskName,
+			Weight: 1000,
+			Fn:     http.StartRequest,
 		},
 		Data:  []interface{}{},
-		Build: buildTrackerConvTask,
-		ctx:   map[string]interface{}{},
+		Build: http.BuildHttpTask,
+		Ctx:   map[string]interface{}{},
 	}
 
 	Tasks = map[string]*LocustTask{
-		"tracker-click": TrackerClickTask,
-		"tracker-conv":  TrackerConvTask,
+		//"tracker-click": TrackerClickTask,
+		fasthttp.TaskName: FastHttpTask,
 	}
 }
