@@ -21,23 +21,11 @@ type LocustTask struct {
 	Ctx   map[string]interface{}
 }
 
-//var TrackerClickTask *LocustTask
-
 var FastHttpTask *LocustTask
 var HttpTask *LocustTask
 var Tasks map[string]*LocustTask
 
 func init() {
-	//TrackerClickTask = &LocustTask{
-	//	Task: &boomer.Task{
-	//		Name:   "tracker-click",
-	//		Weight: 1000,
-	//		Fn:     makeClick,
-	//	},
-	//	Data:  []interface{}{},
-	//	Build: buildTrackerClickTask,
-	//	ctx:   map[string]interface{}{},
-	//}
 
 	FastHttpTask = &LocustTask{
 		Task: &boomer.Task{
@@ -62,7 +50,6 @@ func init() {
 	}
 
 	Tasks = map[string]*LocustTask{
-		//"tracker-click": TrackerClickTask,
 		fasthttp.TaskName: FastHttpTask,
 	}
 }

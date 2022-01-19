@@ -44,3 +44,14 @@ make apply app=boomer tag:v1
 ```
 
 
+## Develop
+### 如何写压测脚本?
+
+
+可以查看 `docker/locust/k8s.yml` 默认是只开启了 fastHttp-task 是对一个图片的压测，如果正式使用，需要先学习一下go，
+至少需要知道go语言的 如何读 csv文件作为账号数据源
+
+然后在 `docker/boomer/task` 目录编辑任务脚本
+
+
+
